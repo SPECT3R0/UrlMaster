@@ -56,11 +56,12 @@ Before running this project, ensure you have the following dependencies installe
 ## Output
 
 The output CSV file will have the following structure:
-```csv
-URL
-https://example.pk
-https://anotherexample.pk
-...
+    ```csv
+    URL
+    https://example.pk
+    https://anotherexample.pk
+    ...
+    ```
 
 ## Customization
 
@@ -98,5 +99,3 @@ https://anotherexample.pk
     with open("urls.csv", "w", newline="") as f:
     ```
     Change `"urls.csv"` to your preferred filename or path.
-
-
