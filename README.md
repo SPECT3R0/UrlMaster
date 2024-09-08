@@ -61,20 +61,42 @@ URL
 https://example.pk
 https://anotherexample.pk
 ...
+
 ## Customization
 
-Number of Pages: You can control how many Google search result pages are scraped by adjusting the num_pages_per_query parameter:
-  ```Python
+- **Number of Pages**: You can control how many Google search result pages are scraped by adjusting the `num_pages_per_query` parameter:
+    ```python
     urls = collect_urls(queries, num_pages_per_query=3)
     ```
+    Increase or decrease the number of pages based on how much data you want to scrape.
 
-Headless Mode: To run the browser in headless mode (i.e., without opening a visible browser window), change:
+- **Headless Mode**: By default, the script runs in visible browser mode. To run the browser in headless mode (without opening a browser window), change the following line in the `google_search_playwright` function:
+    ```python
+    browser = p.chromium.launch(headless=True)
+    ```
+    This is useful for running the script on servers or in environments where you don't need to see the browser.
 
-```Python
-  browser = p.chromium.launch(headless=True)
+- **Domain Filtering**: By default, the script collects `.pk` domains. You can modify the domain filter by adjusting this line:
+    ```python
+    if href and re.search(r'\.pk', href):  # Only collect .pk domains
     ```
-Also change from (.pk) to any other according to your scrapping needs.
- ```Python
-     if href and re.search(r'\.pk', href):  # Only collect .pk domains
+    For example, to collect `.com` domains, replace `\.pk` with `\.com`. You can also modify this to match any other top-level domain (TLD) according to your needs.
+
+- **Search Queries**: The list of queries used for scraping can be customized. Modify the `queries` list to include the search terms you are interested in:
+    ```python
+    queries = [
+        "pakistan websites",
+        "popular websites in pakistan",
+        "pakistan web directories",
+        "top websites in pakistan",
+    ]
     ```
+    Add or remove queries to refine the results based on your preferences.
+
+- **CSV Output File**: By default, the script saves URLs into a file called `urls.csv`. If you'd like to save the output under a different name or location, modify the following line:
+    ```python
+    with open("urls.csv", "w", newline="") as f:
+    ```
+    Change `"urls.csv"` to your preferred filename or path.
+
 
